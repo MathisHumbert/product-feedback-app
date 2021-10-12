@@ -66,7 +66,7 @@ function displayProducts(data, filterSort) {
     <p class="body3">
       ${description}
     </p>
-    <button class="button2">${category}</button>
+    <button class="main-btn">${category}</button>
   </div>
 
   <button class="upvotes">
@@ -84,6 +84,18 @@ function displayProducts(data, filterSort) {
     .join('');
 
   mainFeedback.innerHTML = dataHtml;
+  const upvotesBtn = mainFeedback.querySelectorAll('.upvotes');
+  upvotesBtn.forEach((btn) =>
+    btn.addEventListener('click', function () {
+      if (!this.classList.contains('active')) {
+        this.classList.add('active');
+        this.children[0].src = './assets/shared/arrow-up-white.svg';
+      } else {
+        this.classList.remove('active');
+        this.children[0].src = './assets/shared/icon-arrow-up.svg';
+      }
+    })
+  );
 }
 
 sortHeader.addEventListener('click', displaySelection);
