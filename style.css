@@ -5,7 +5,6 @@
 :root {
   --color-purple: #ad1fea;
   --color-water-blue: #4661e6;
-  --color-dark-blue: #4661e6;
   --color-white: #fff;
   --color-light-blue: #f2f4ff;
   --color-light-grey: #f7f8fd;
@@ -24,6 +23,43 @@
 body {
   font-family: 'Jost', sans-serif;
   background: #f2f2f2;
+}
+
+h1 {
+  font-size: 24px;
+  line-height: 35px;
+  letter-spacing: 0.33px;
+}
+h2 {
+  font-size: 20px;
+  line-height: 29px;
+  letter-spacing: 0.25px;
+}
+h1 {
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.25px;
+}
+h1 {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
+
+.body1 {
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: 400px;
+}
+.body2 {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400px;
+}
+.body3 {
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 600px;
 }
 
 button {
@@ -58,8 +94,8 @@ nav {
 }
 
 /*
- suggestions
- */
+suggestions
+*/
 .suggestions-bar {
   width: 100%;
   background: lightblue;
@@ -115,4 +151,112 @@ main feedback
 .single-item-feedback {
   background: var(--color-white);
   padding: 1rem;
+}
+
+/* 
+sidebar
+*/
+.sidebar {
+  position: absolute;
+  top: 72px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.6s ease-in;
+}
+
+.sidebar.show {
+  opacity: 1;
+}
+
+.sidebar-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--color-light-grey);
+  height: 100%;
+  width: 70%;
+  max-width: 560px;
+  padding: 19px;
+  transform: translateX(100%);
+  transition: transform 0.6s ease-in;
+}
+
+.show .sidebar-container {
+  transform: translate(0);
+}
+
+.sidebar-btn-container,
+.sidebar-roadmap-container {
+  background: var(--color-white);
+  border-radius: 10px;
+  padding: 19px;
+}
+
+.sidebar-btn-container {
+  margin-bottom: 19px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sidebar-btn-container .sidebar-btn {
+  background: var(--color-light-blue);
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: var(--color-water-blue);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sidebar-roadmap-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-roadmap-container header h3 {
+  color: var(--color-dark-grey);
+}
+.sidebar-roadmap-container header p {
+  color: var(--color-water-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.roadmap-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roadmap-item > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.roadmap-item .body1,
+.roadmap-item h4 {
+  color: var(--color-grey);
+}
+
+.round {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.round.orange {
+  background: var(--color-orange);
+}
+.round.violet {
+  background: var(--color-purple);
+}
+.round.blue {
+  background: var(--color-sky-blue);
 }

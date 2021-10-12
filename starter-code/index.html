@@ -24,7 +24,7 @@
           <h2>Frontend Mentor</h2>
           <p class="body3">Feedback Board</p>
         </div>
-        <button class="sidebar-btn">
+        <button class="toggle-sidebar-btn">
           <img src="./assets/shared/mobile/icon-hamburger.svg" alt="" />
         </button>
       </div>
@@ -92,34 +92,42 @@
 
     <!-- sidebar -->
     <div class="sidebar">
-      <div class="sidebar-btn-container">
-        <button class="sidebar-btn">All</button>
-        <button class="sidebar-btn">UI</button>
-        <button class="sidebar-btn">UX</button>
-        <button class="sidebar-btn">Enhancement</button>
-        <button class="sidebar-btn">Bug</button>
-        <button class="sidebar-btn">Feature</button>
-      </div>
-      <div class="sidebar-roadmap-container">
-        <header>
-          <h3>Roadmap</h3>
-          <p class="body3">View</p>
-        </header>
-        <div class="sidebar-roadmap-items">
-          <div class="roadmap-item">
-            <div class="round-orange"></div>
-            <p class="body1">Planned</p>
-            <h4 class="number">2</h4>
-          </div>
-          <div class="roadmap-item">
-            <div class="round-violer"></div>
-            <p class="body1">In-Progress</p>
-            <h4 class="number">3</h4>
-          </div>
-          <div class="roadmap-item">
-            <div class="round-orange"></div>
-            <p class="body1">Live</p>
-            <h4 class="number">1</h4>
+      <div class="sidebar-container">
+        <div class="sidebar-btn-container">
+          <button class="sidebar-btn">All</button>
+          <button class="sidebar-btn">UI</button>
+          <button class="sidebar-btn">UX</button>
+          <button class="sidebar-btn">Enhancement</button>
+          <button class="sidebar-btn">Bug</button>
+          <button class="sidebar-btn">Feature</button>
+        </div>
+        <div class="sidebar-roadmap-container">
+          <header>
+            <h3>Roadmap</h3>
+            <p class="body3">View</p>
+          </header>
+          <div class="sidebar-roadmap-items">
+            <div class="roadmap-item">
+              <div>
+                <div class="round orange"></div>
+                <p class="body1">Planned</p>
+              </div>
+              <h4 class="number">2</h4>
+            </div>
+            <div class="roadmap-item">
+              <div>
+                <div class="round violet"></div>
+                <p class="body1">In-Progress</p>
+              </div>
+              <h4 class="number">3</h4>
+            </div>
+            <div class="roadmap-item">
+              <div>
+                <div class="round blue"></div>
+                <p class="body1">Live</p>
+              </div>
+              <h4 class="number">1</h4>
+            </div>
           </div>
         </div>
       </div>
@@ -129,5 +137,8 @@
     <!-- There is no feedback yet. Got a suggestion? Found a bug that needs to be
     squashed? We love hearing about new ideas to improve our app. Add Feedback -->
     <!-- No feedback end -->
+
+    <!-- js -->
+    <script src="../app.js"></script>
   </body>
 </html>
