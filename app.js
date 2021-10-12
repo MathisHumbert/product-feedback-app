@@ -8,7 +8,7 @@ const singleSelect = document.querySelectorAll('.single-select');
 const sortResult = document.querySelector('.sort-result');
 
 window.addEventListener('DOMContentLoaded', () => {
-  getProductRequests('./data.json');
+  getProductRequests('./data.json', 'Most Upvotes');
 });
 
 toggleSidebarBtn.addEventListener('click', displaySidebar);
@@ -39,12 +39,21 @@ async function fetchData(URL) {
   return data.productRequests;
 }
 
-async function getProductRequests(URL) {
+async function getProductRequests(URL, filterSort) {
   const data = await fetchData(URL);
-  displayProducts(data);
+  displayProducts(data, filterSort);
 }
 
-function displayProducts(data) {
+function displayProducts(data, filterSort) {
+  if (filterSort === 'Most Upvotes') {
+    data = filterMostVotes(data);
+  } else if (filterSort === 'Least Upvotes') {
+    data = filterLeastVotes(data);
+  } else if (filterSort === 'Most Comments') {
+    data = filterMostComments(data);
+  } else {
+    data = filterLeastComments(data);
+  }
   let dataHtml = data
     .map((item) => {
       // destructuring
@@ -92,5 +101,61 @@ function sortHtml(e) {
 
     sort.classList.remove('show');
     // display html
+    getProductRequests('./data.json', e.target.textContent);
   } else return;
+}
+
+function filterMostVotes(data) {
+  data.sort((a, b) => {
+    if (a.upvotes < b.upvotes) return 1;
+    else if (a.upvotes > b.upvotes) return -1;
+    else return 0;
+  });
+  return data;
+}
+
+function filterLeastVotes(data) {
+  data.sort((a, b) => {
+    if (a.upvotes < b.upvotes) return -1;
+    else if (a.upvotes > b.upvotes) return 1;
+    else return 0;
+  });
+  return data;
+}
+
+function filterMostComments(data) {
+  data.sort((a, b) => {
+    if (
+      (a.comments === undefined ? 0 : a.comments.length) <
+      (b.comments === undefined ? 0 : b.comments.length)
+    )
+      return 1;
+    else if (
+      (a.comments === undefined ? 0 : a.comments.length) >
+      (b.comments === undefined ? 0 : b.comments.length)
+    )
+      return -1;
+    else return 0;
+  });
+  console.log(data);
+
+  return data;
+}
+
+function filterLeastComments(data) {
+  data.sort((a, b) => {
+    if (
+      (a.comments === undefined ? 0 : a.comments.length) <
+      (b.comments === undefined ? 0 : b.comments.length)
+    )
+      return -1;
+    else if (
+      (a.comments === undefined ? 0 : a.comments.length) >
+      (b.comments === undefined ? 0 : b.comments.length)
+    )
+      return 1;
+    else return 0;
+  });
+
+  return data;
 }
