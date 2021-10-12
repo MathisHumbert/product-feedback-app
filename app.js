@@ -1,6 +1,11 @@
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
 const mainFeedback = document.querySelector('.main-feedback');
+const sort = document.querySelector('.sort');
+const sortHeader = document.querySelector('.sort-header');
+const selectSuggestions = document.querySelector('.select-suggestions');
+const singleSelect = document.querySelectorAll('.single-select');
+const sortResult = document.querySelector('.sort-result');
 
 window.addEventListener('DOMContentLoaded', () => {
   getProductRequests('./data.json');
@@ -70,4 +75,22 @@ function displayProducts(data) {
     .join('');
 
   mainFeedback.innerHTML = dataHtml;
+}
+
+sortHeader.addEventListener('click', displaySelection);
+selectSuggestions.addEventListener('click', sortHtml);
+
+function displaySelection(e) {
+  sort.classList.toggle('show');
+}
+
+function sortHtml(e) {
+  if (e.target.classList.contains('body1')) {
+    singleSelect.forEach((item) => item.classList.remove('show'));
+    e.target.parentElement.classList.add('show');
+    sortResult.textContent = e.target.textContent;
+
+    sort.classList.remove('show');
+    // display html
+  } else return;
 }
