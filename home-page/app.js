@@ -1,11 +1,11 @@
 // import
 import { exitSlidebar, displaySidebar } from './utils/sidebar.js';
+import { getSort, displaySort, filterSort } from './utils/sortFunctions.js';
 import {
-  filterLeastComments,
-  filterMostComments,
-  filterLeastVotes,
-  filterMostVotes,
-} from './utils/filterSort.js';
+  getCategory,
+  displayCategory,
+  filterCategory,
+} from './utils/categoryFuntions.js';
 
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
@@ -19,12 +19,36 @@ const sidebarBtn = document.querySelectorAll('.sidebar-btn');
 const categoryBtn = document.querySelectorAll('.category-btn');
 
 window.addEventListener('DOMContentLoaded', () => {
-  getProductRequests('../data/data.json', 'Most Upvotes');
+  // load the hmtl with json
+  getProductRequests(
+    '../data/data.json',
+    localStorage.getItem('category') || 'All',
+    localStorage.getItem('sort') || 'Most Upvotes'
+  );
+
+  // display the sort html
+  displaySort(localStorage.getItem('sort') || 'Most Upvotes');
+
+  // display the category html
+  displayCategory(localStorage.getItem('category') || 'All');
 });
 
-// sidebar event
+// sidebar events
 toggleSidebarBtn.addEventListener('click', displaySidebar);
 sidebar.addEventListener('click', exitSlidebar);
+
+// sort events
+sortHeader.addEventListener('click', () => sort.classList.toggle('show'));
+selectSuggestions.addEventListener('click', getSort);
+
+// category events
+sidebarBtn.forEach((btn) => {
+  btn.addEventListener('click', getCategory);
+  btn.addEventListener('click', exitSlidebar);
+});
+categoryBtn.forEach((btn) => {
+  btn.addEventListener('click', getCategory);
+});
 
 async function fetchData(URL) {
   const response = await fetch(URL);
@@ -32,9 +56,17 @@ async function fetchData(URL) {
   return data.productRequests;
 }
 
-async function getProductRequests(URL) {
-  const data = await fetchData(URL);
-  // data = filterData(sort, category);
+async function getProductRequests(URL, category, sort) {
+  // get the data
+  let data = await fetchData(URL);
+
+  // filter data by category
+  data = filterCategory(data, category);
+
+  // filter data by sort
+  data = filterSort(data, sort);
+
+  // display HTML
   displayProducts(data);
 }
 
@@ -83,44 +115,4 @@ function displayProducts(data) {
   );
 }
 
-sortHeader.addEventListener('click', displaySelection);
-selectSuggestions.addEventListener('click', sortHtml);
-
-function displaySelection(e) {
-  sort.classList.toggle('show');
-}
-
-function sortHtml(e) {
-  if (e.target.classList.contains('sort-filter')) {
-    // display css
-    singleSelect.forEach((item) => item.classList.remove('show'));
-    e.target.parentElement.classList.add('show');
-    sortResult.textContent = e.target.textContent;
-    localStorage.setItem('sort', e.target.textContent);
-    sort.classList.remove('show');
-
-    // display html
-    // getProductRequests('../data/data.json', e.target.textContent);
-  } else return;
-}
-
-sidebarBtn.forEach((btn) => {
-  btn.addEventListener('click', filterCategory);
-  btn.addEventListener('click', exitSlidebar);
-});
-categoryBtn.forEach((btn) => {
-  btn.addEventListener('click', filterCategory);
-});
-
-function filterCategory() {
-  let value = this.textContent;
-
-  sidebarBtn.forEach((btn) => {
-    btn.classList.remove('active');
-    if (btn.textContent === value) btn.classList.add('active');
-  });
-  categoryBtn.forEach((btn) => {
-    btn.classList.remove('active');
-    if (btn.textContent === value) btn.classList.add('active');
-  });
-}
+export { getProductRequests };

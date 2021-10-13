@@ -20,12 +20,10 @@ function displaySidebar(e) {
     sidebar.classList.add('show');
     toggleSidebarBtn.innerHTML =
       '<img src="../data/assets/shared/mobile/icon-close.svg" alt="" />';
-    document.body.style.overflow = 'hidden';
   } else {
     sidebar.classList.remove('show');
     toggleSidebarBtn.innerHTML =
       '<img src="../data/assets/shared/mobile/icon-hamburger.svg" alt="" />';
-    document.body.style.overflow = 'visible';
   }
 }
 
