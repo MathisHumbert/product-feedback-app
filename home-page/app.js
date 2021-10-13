@@ -1,3 +1,6 @@
+// import
+import { exitSlidebar, displaySidebar } from './utils/sidebar.js';
+
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
 const mainFeedback = document.querySelector('.main-feedback');
@@ -6,32 +9,16 @@ const sortHeader = document.querySelector('.sort-header');
 const selectSuggestions = document.querySelector('.select-suggestions');
 const singleSelect = document.querySelectorAll('.single-select');
 const sortResult = document.querySelector('.sort-result');
+const sidebarBtn = document.querySelectorAll('.sidebar-btn');
+const categoryBtn = document.querySelectorAll('.category-btn');
 
 window.addEventListener('DOMContentLoaded', () => {
-  getProductRequests('./data.json', 'Most Upvotes');
+  getProductRequests('../data/data.json', 'Most Upvotes');
 });
 
+// sidebar event
 toggleSidebarBtn.addEventListener('click', displaySidebar);
-sidebar.addEventListener('click', (e) => {
-  if (e.target.classList.contains('sidebar')) {
-    sidebar.classList.remove('show');
-    toggleSidebarBtn.innerHTML =
-      '<img src="./assets/shared/mobile/icon-hamburger.svg" alt="" />';
-  }
-});
-
-function displaySidebar(e) {
-  let source = e.currentTarget.children[0].src;
-  if (source.includes('hamburger')) {
-    sidebar.classList.add('show');
-    toggleSidebarBtn.innerHTML =
-      '<img src="./assets/shared/mobile/icon-close.svg" alt="" />';
-  } else {
-    sidebar.classList.remove('show');
-    toggleSidebarBtn.innerHTML =
-      '<img src="./assets/shared/mobile/icon-hamburger.svg" alt="" />';
-  }
-}
+sidebar.addEventListener('click', exitSlidebar);
 
 async function fetchData(URL) {
   const response = await fetch(URL);
@@ -39,21 +26,13 @@ async function fetchData(URL) {
   return data.productRequests;
 }
 
-async function getProductRequests(URL, filterSort) {
+async function getProductRequests(URL) {
   const data = await fetchData(URL);
-  displayProducts(data, filterSort);
+  // data = filterData(sort, category);
+  displayProducts(data);
 }
 
-function displayProducts(data, filterSort) {
-  if (filterSort === 'Most Upvotes') {
-    data = filterMostVotes(data);
-  } else if (filterSort === 'Least Upvotes') {
-    data = filterLeastVotes(data);
-  } else if (filterSort === 'Most Comments') {
-    data = filterMostComments(data);
-  } else {
-    data = filterLeastComments(data);
-  }
+function displayProducts(data) {
   let dataHtml = data
     .map((item) => {
       // destructuring
@@ -62,20 +41,20 @@ function displayProducts(data, filterSort) {
       return `
     <div class="single-item-feedback" data-id="${id}">
   <div class="single-item-text">
-    <h4>${title}</h4>
-    <p class="body3">
+    <h1>${title}</h1>
+    <p>
       ${description}
     </p>
     <button class="main-btn">${category}</button>
   </div>
 
   <button class="upvotes">
-    <img src="./assets/shared/icon-arrow-up.svg" alt="" />
+    <img src="../data/assets/shared/icon-arrow-up.svg" alt="" />
     <p>${upvotes}</p>
   </button>
 
   <div class="questions">
-    <img src="./assets/shared/icon-comments.svg" alt="" />
+    <img src="../data/assets/shared/icon-comments.svg" alt="" />
     <p>${comments === undefined ? 0 : comments.length}</p>
   </div>
 </div>
@@ -89,10 +68,10 @@ function displayProducts(data, filterSort) {
     btn.addEventListener('click', function () {
       if (!this.classList.contains('active')) {
         this.classList.add('active');
-        this.children[0].src = './assets/shared/arrow-up-white.svg';
+        this.children[0].src = '../data/assets/shared/arrow-up-white.svg';
       } else {
         this.classList.remove('active');
-        this.children[0].src = './assets/shared/icon-arrow-up.svg';
+        this.children[0].src = '../data/assets/shared/icon-arrow-up.svg';
       }
     })
   );
@@ -107,13 +86,15 @@ function displaySelection(e) {
 
 function sortHtml(e) {
   if (e.target.classList.contains('body1')) {
+    // display css
     singleSelect.forEach((item) => item.classList.remove('show'));
     e.target.parentElement.classList.add('show');
     sortResult.textContent = e.target.textContent;
-
+    localStorage.setItem('sort', e.target.textContent);
     sort.classList.remove('show');
+
     // display html
-    getProductRequests('./data.json', e.target.textContent);
+    getProductRequests('../data/data.json', e.target.textContent);
   } else return;
 }
 
@@ -170,4 +151,24 @@ function filterLeastComments(data) {
   });
 
   return data;
+}
+
+sidebarBtn.forEach((btn) => {
+  btn.addEventListener('click', filterCategory);
+});
+categoryBtn.forEach((btn) => {
+  btn.addEventListener('click', filterCategory);
+});
+
+function filterCategory() {
+  let value = this.textContent;
+
+  sidebarBtn.forEach((btn) => {
+    btn.classList.remove('active');
+    if (btn.textContent === value) btn.classList.add('active');
+  });
+  categoryBtn.forEach((btn) => {
+    btn.classList.remove('active');
+    if (btn.textContent === value) btn.classList.add('active');
+  });
 }
