@@ -3,7 +3,10 @@ const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
 
 // exite the slidebar if click outside
 function exitSlidebar(e) {
-  if (e.target.classList.contains('sidebar')) {
+  if (
+    e.target.classList.contains('sidebar') ||
+    e.target.classList.contains('sidebar-btn')
+  ) {
     sidebar.classList.remove('show');
     toggleSidebarBtn.innerHTML =
       '<img src="../data/assets/shared/mobile/icon-hamburger.svg" alt="" />';

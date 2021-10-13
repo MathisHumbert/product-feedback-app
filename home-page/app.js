@@ -1,5 +1,11 @@
 // import
 import { exitSlidebar, displaySidebar } from './utils/sidebar.js';
+import {
+  filterLeastComments,
+  filterMostComments,
+  filterLeastVotes,
+  filterMostVotes,
+} from './utils/filterSort.js';
 
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
@@ -85,7 +91,7 @@ function displaySelection(e) {
 }
 
 function sortHtml(e) {
-  if (e.target.classList.contains('body1')) {
+  if (e.target.classList.contains('sort-filter')) {
     // display css
     singleSelect.forEach((item) => item.classList.remove('show'));
     e.target.parentElement.classList.add('show');
@@ -94,67 +100,13 @@ function sortHtml(e) {
     sort.classList.remove('show');
 
     // display html
-    getProductRequests('../data/data.json', e.target.textContent);
+    // getProductRequests('../data/data.json', e.target.textContent);
   } else return;
-}
-
-function filterMostVotes(data) {
-  data.sort((a, b) => {
-    if (a.upvotes < b.upvotes) return 1;
-    else if (a.upvotes > b.upvotes) return -1;
-    else return 0;
-  });
-  return data;
-}
-
-function filterLeastVotes(data) {
-  data.sort((a, b) => {
-    if (a.upvotes < b.upvotes) return -1;
-    else if (a.upvotes > b.upvotes) return 1;
-    else return 0;
-  });
-  return data;
-}
-
-function filterMostComments(data) {
-  data.sort((a, b) => {
-    if (
-      (a.comments === undefined ? 0 : a.comments.length) <
-      (b.comments === undefined ? 0 : b.comments.length)
-    )
-      return 1;
-    else if (
-      (a.comments === undefined ? 0 : a.comments.length) >
-      (b.comments === undefined ? 0 : b.comments.length)
-    )
-      return -1;
-    else return 0;
-  });
-  console.log(data);
-
-  return data;
-}
-
-function filterLeastComments(data) {
-  data.sort((a, b) => {
-    if (
-      (a.comments === undefined ? 0 : a.comments.length) <
-      (b.comments === undefined ? 0 : b.comments.length)
-    )
-      return -1;
-    else if (
-      (a.comments === undefined ? 0 : a.comments.length) >
-      (b.comments === undefined ? 0 : b.comments.length)
-    )
-      return 1;
-    else return 0;
-  });
-
-  return data;
 }
 
 sidebarBtn.forEach((btn) => {
   btn.addEventListener('click', filterCategory);
+  btn.addEventListener('click', exitSlidebar);
 });
 categoryBtn.forEach((btn) => {
   btn.addEventListener('click', filterCategory);
