@@ -19,14 +19,56 @@
   <body>
     <!-- nav -->
     <nav>
-      <div class="img-container">
-        <div class="nav-title">
-          <h2>Frontend Mentor</h2>
-          <p class="body3">Feedback Board</p>
+      <div class="nav-container">
+        <!-- img -->
+        <div class="img-container">
+          <div class="nav-title">
+            <h2>Frontend Mentor</h2>
+            <p class="body3">Feedback Board</p>
+          </div>
+          <button class="toggle-sidebar-btn">
+            <img src="./assets/shared/mobile/icon-hamburger.svg" alt="" />
+          </button>
         </div>
-        <button class="toggle-sidebar-btn">
-          <img src="./assets/shared/mobile/icon-hamburger.svg" alt="" />
-        </button>
+        <!-- category-btn -->
+        <div class="category-btn-container">
+          <button class="category-btn button2">All</button>
+          <button class="category-btn button2">UI</button>
+          <button class="category-btn button2">UX</button>
+          <button class="category-btn button2">Enhancement</button>
+          <button class="category-btn button2">Bug</button>
+          <button class="category-btn button2">Feature</button>
+        </div>
+        <!-- roadmap-nav -->
+        <div class="roadmap-container">
+          <header>
+            <h3>Roadmap</h3>
+            <p class="body3">View</p>
+          </header>
+          <div class="sidebar-roadmap-items">
+            <div class="roadmap-item">
+              <div>
+                <div class="round orange"></div>
+                <p class="body1">Planned</p>
+              </div>
+              <h4 class="number">2</h4>
+            </div>
+            <div class="roadmap-item">
+              <div>
+                <div class="round violet"></div>
+                <p class="body1">In-Progress</p>
+              </div>
+              <h4 class="number">3</h4>
+            </div>
+            <div class="roadmap-item">
+              <div>
+                <div class="round blue"></div>
+                <p class="body1">Live</p>
+              </div>
+              <h4 class="number">1</h4>
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -74,7 +116,7 @@
     <!-- sidebar -->
     <div class="sidebar">
       <div class="sidebar-container">
-        <div class="sidebar-btn-container">
+        <div class="category-btn-container">
           <button class="sidebar-btn button2">All</button>
           <button class="sidebar-btn button2">UI</button>
           <button class="sidebar-btn button2">UX</button>
@@ -82,7 +124,7 @@
           <button class="sidebar-btn button2">Bug</button>
           <button class="sidebar-btn button2">Feature</button>
         </div>
-        <div class="sidebar-roadmap-container">
+        <div class="roadmap-container">
           <header>
             <h3>Roadmap</h3>
             <p class="body3">View</p>
