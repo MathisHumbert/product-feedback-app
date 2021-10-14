@@ -6,18 +6,17 @@ import {
   displayCategory,
   filterCategory,
 } from './utils/categoryFuntions.js';
+import displayNumbers from './utils/displayNumbers.js';
 
+// get elements
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
 const mainFeedback = document.querySelector('.main-feedback');
 const sort = document.querySelector('.sort');
 const sortHeader = document.querySelector('.sort-header');
 const selectSuggestions = document.querySelector('.select-suggestions');
-const singleSelect = document.querySelectorAll('.single-select');
-const sortResult = document.querySelector('.sort-result');
 const sidebarBtn = document.querySelectorAll('.sidebar-btn');
 const categoryBtn = document.querySelectorAll('.category-btn');
-const numSug = document.querySelector('.num-sug');
 
 window.addEventListener('DOMContentLoaded', () => {
   // load the hmtl with json
@@ -67,7 +66,8 @@ async function getProductRequests(URL, category, sort) {
   // filter data by sort
   data = filterSort(data, sort);
 
-  numSug.innerHTML = `${data.length} Suggestions`;
+  // display the number of suggestions and roadmap
+  displayNumbers(data);
 
   // display HTML
   displayProducts(data);
@@ -80,9 +80,10 @@ function displayProducts(data) {
       let { id, title, category, upvotes, description, comments } = item;
 
       return `
-    <div class="single-item-feedback" data-id="${id}">
+    
+<section class="single-item-feedback" data-id="${id}">
   <div class="single-item-text">
-    <h1>${title}</h1>
+    <a href="../feedback-edit/feedback-edit.html" class="item-link">${title}</a>
     <p>
       ${description}
     </p>
@@ -98,7 +99,9 @@ function displayProducts(data) {
     <img src="../data/assets/shared/icon-comments.svg" alt="" />
     <p>${comments === undefined ? 0 : comments.length}</p>
   </div>
-</div>
+</section>
+
+    
     `;
     })
     .join('');
@@ -110,9 +113,12 @@ function displayProducts(data) {
       if (!this.classList.contains('active')) {
         this.classList.add('active');
         this.children[0].src = '../data/assets/shared/arrow-up-white.svg';
+        this.children[1].textContent =
+          parseInt(this.children[1].textContent) + 1;
       } else {
         this.classList.remove('active');
         this.children[0].src = '../data/assets/shared/icon-arrow-up.svg';
+        this.children[1].textContent = this.children[1].textContent - 1;
       }
     })
   );
