@@ -74,6 +74,7 @@ async function getProductRequests(URL, category, sort) {
 }
 
 function displayProducts(data) {
+  // if there is no element
   if (data.length === 0) {
     mainFeedback.innerHTML = `<section class="no-feedback">
     <img src="../data/assets/suggestions/illustration-empty.svg" alt="logo" class="logo">
@@ -87,13 +88,15 @@ function displayProducts(data) {
   </section>`;
     return;
   }
+
+  // if there is element
   let dataHtml = data
     .map((item) => {
       // destructuring
       let { id, title, category, upvotes, description, comments } = item;
 
+      // return the html
       return `
-    
 <section class="single-item-feedback" data-id="${id}">
   <div class="single-item-text">
     <a href="../feedback-edit/feedback-edit.html" class="item-link">${title}</a>
@@ -114,13 +117,17 @@ function displayProducts(data) {
   </div>
 </section>
 
-    
     `;
     })
     .join('');
 
+  // push the html
   mainFeedback.innerHTML = dataHtml;
+
+  // get element
   const upvotesBtn = mainFeedback.querySelectorAll('.upvotes');
+
+  // event for upvote click
   upvotesBtn.forEach((btn) =>
     btn.addEventListener('click', function () {
       if (!this.classList.contains('active')) {
