@@ -74,6 +74,19 @@ async function getProductRequests(URL, category, sort) {
 }
 
 function displayProducts(data) {
+  if (data.length === 0) {
+    mainFeedback.innerHTML = `<section class="no-feedback">
+    <img src="../data/assets/suggestions/illustration-empty.svg" alt="logo" class="logo">
+    <h2>There is no feedback yet.</h2>
+    <p>Got a suggestion? Found a bug that needs to be
+    squashed? We love hearing about new ideas to improve our app.</p>
+    <a href="../feedback-edit/feedback-edit.html" class="button1"
+            ><img src=" ../data/assets/shared/icon-plus.svg" alt="" /> Add
+            Feedback</a
+          >
+  </section>`;
+    return;
+  }
   let dataHtml = data
     .map((item) => {
       // destructuring
