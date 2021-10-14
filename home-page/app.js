@@ -17,6 +17,7 @@ const singleSelect = document.querySelectorAll('.single-select');
 const sortResult = document.querySelector('.sort-result');
 const sidebarBtn = document.querySelectorAll('.sidebar-btn');
 const categoryBtn = document.querySelectorAll('.category-btn');
+const numSug = document.querySelector('.num-sug');
 
 window.addEventListener('DOMContentLoaded', () => {
   // load the hmtl with json
@@ -65,6 +66,8 @@ async function getProductRequests(URL, category, sort) {
 
   // filter data by sort
   data = filterSort(data, sort);
+
+  numSug.innerHTML = `${data.length} Suggestions`;
 
   // display HTML
   displayProducts(data);
