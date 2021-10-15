@@ -22,7 +22,7 @@
 
 body {
   font-family: 'Jost', sans-serif;
-  background: #f2f2f2;
+  background: var(--color-light-blue);
 }
 
 button {
@@ -248,7 +248,7 @@ suggestions
   width: 255px;
   max-width: 255px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px #979797;
+  box-shadow: 0 2px 6px #979797;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.4s linear, visibility 0.4s linear;
@@ -314,8 +314,9 @@ main feedback
   background: var(--color-white);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 6px #979797;
   cursor: pointer;
+  box-shadow: 0 2px 6px #979797;
+  transition: box-shadow 0.4s linear;
 }
 
 .item-link {
@@ -412,6 +413,7 @@ main feedback
   text-align: center;
   border-radius: 10px;
   height: 460px;
+  box-shadow: 0 2px 6px #979797;
 }
 
 .no-feedback h2 {
@@ -470,8 +472,9 @@ media screen tablet
 */
 @media screen and (min-width: 768px) {
   body {
-    padding: 2rem 24px 4rem 24px;
+    padding: 2rem 3rem 4rem 3rem;
   }
+
   .sidebar {
     display: none;
   }
@@ -484,6 +487,7 @@ media screen tablet
     background: transparent;
     min-height: 178px;
     padding: 0;
+    max-height: inherit;
   }
 
   .nav-container {
@@ -626,5 +630,59 @@ media screen tablet
 
   .no-feedback p {
     font-size: 16px;
+  }
+}
+
+/* 
+media screen desktop
+*/
+@media screen and (min-width: 1440px) {
+  body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 2rem;
+    padding: 2rem 4rem 4rem 4rem;
+  }
+
+  nav {
+    max-height: inherit;
+    height: fit-content;
+    max-width: 500px;
+  }
+
+  .nav-container {
+    height: 100%;
+    min-width: inherit;
+    max-height: inherit;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .img-container {
+    height: 137px;
+    max-height: inherit;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  nav .category-btn-container {
+    max-height: inherit;
+    min-height: 178px;
+    padding: 2rem;
+  }
+
+  nav .roadmap-container {
+    max-height: inherit;
+    min-height: 178px;
+    padding: 2rem;
+  }
+
+  .suggestions-bar {
+    margin-top: 0rem;
+  }
+
+  .no-feedback {
+    height: 800px;
+    gap: 3rem;
   }
 }
