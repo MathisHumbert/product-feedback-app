@@ -7,17 +7,20 @@ import {
   filterCategory,
 } from './utils/categoryFuntions.js';
 import displayNumbers from './utils/displayNumbers.js';
+import displayProducts from './utils/displayProducts.js';
 
 // get elements
 const sidebar = document.querySelector('.sidebar');
 const toggleSidebarBtn = document.querySelector('.toggle-sidebar-btn');
-const mainFeedback = document.querySelector('.main-feedback');
 const sort = document.querySelector('.sort');
 const sortHeader = document.querySelector('.sort-header');
 const selectSuggestions = document.querySelector('.select-suggestions');
 const sidebarBtn = document.querySelectorAll('.sidebar-btn');
 const categoryBtn = document.querySelectorAll('.category-btn');
 
+// ALL EVENTS
+
+// winfow event for loading everything
 window.addEventListener('DOMContentLoaded', () => {
   // load the hmtl with json
   getProductRequests(
@@ -50,12 +53,14 @@ categoryBtn.forEach((btn) => {
   btn.addEventListener('click', getCategory);
 });
 
+// fetch the data
 async function fetchData(URL) {
   const response = await fetch(URL);
   const data = await response.json();
   return data.productRequests;
 }
 
+// get the data and call the displayProducts
 async function getProductRequests(URL, category, sort) {
   // get the data
   let data = await fetchData(URL);
@@ -71,77 +76,6 @@ async function getProductRequests(URL, category, sort) {
 
   // display HTML
   displayProducts(data);
-}
-
-function displayProducts(data) {
-  // if there is no element
-  if (data.length === 0) {
-    mainFeedback.innerHTML = `<section class="no-feedback">
-    <img src="../data/assets/suggestions/illustration-empty.svg" alt="logo" class="logo">
-    <h2>There is no feedback yet.</h2>
-    <p>Got a suggestion? Found a bug that needs to be
-    squashed? We love hearing about new ideas to improve our app.</p>
-    <a href="../feedback-edit/feedback-edit.html" class="button1"
-            ><img src=" ../data/assets/shared/icon-plus.svg" alt="" /> Add
-            Feedback</a
-          >
-  </section>`;
-    return;
-  }
-
-  // if there is element
-  let dataHtml = data
-    .map((item) => {
-      // destructuring
-      let { id, title, category, upvotes, description, comments } = item;
-
-      // return the html
-      return `
-<section class="single-item-feedback" data-id="${id}">
-  <div class="single-item-text">
-    <a href="../feedback-edit/feedback-edit.html" class="item-link">${title}</a>
-    <p>
-      ${description}
-    </p>
-    <button class="main-btn">${category}</button>
-  </div>
-
-  <button class="upvotes">
-    <img src="../data/assets/shared/icon-arrow-up.svg" alt="" />
-    <p>${upvotes}</p>
-  </button>
-
-  <div class="questions">
-    <img src="../data/assets/shared/icon-comments.svg" alt="" />
-    <p>${comments === undefined ? 0 : comments.length}</p>
-  </div>
-</section>
-
-    `;
-    })
-    .join('');
-
-  // push the html
-  mainFeedback.innerHTML = dataHtml;
-
-  // get element
-  const upvotesBtn = mainFeedback.querySelectorAll('.upvotes');
-
-  // event for upvote click
-  upvotesBtn.forEach((btn) =>
-    btn.addEventListener('click', function () {
-      if (!this.classList.contains('active')) {
-        this.classList.add('active');
-        this.children[0].src = '../data/assets/shared/arrow-up-white.svg';
-        this.children[1].textContent =
-          parseInt(this.children[1].textContent) + 1;
-      } else {
-        this.classList.remove('active');
-        this.children[0].src = '../data/assets/shared/icon-arrow-up.svg';
-        this.children[1].textContent = this.children[1].textContent - 1;
-      }
-    })
-  );
 }
 
 export { getProductRequests };
