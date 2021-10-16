@@ -2,7 +2,7 @@ import fetchData from '../home-page/utils/fetchData.js';
 import toggleUpVotes from '../home-page/utils/toggleUpVotes.js';
 
 const singleItem = document.querySelector('.single-item-feedback');
-const comments = document.querySelector('.all-comments');
+const commentsContainer = document.querySelector('.comments-container');
 
 async function getData(URL) {
   let data = await fetchData(URL);
@@ -82,7 +82,7 @@ function displayComments(data) {
       displayReply(replies, comment);
     }
 
-    comments.appendChild(comment);
+    commentsContainer.appendChild(comment);
   });
 }
 

@@ -171,13 +171,24 @@ comments
 */
 .comments {
   background: var(--color-white);
-  padding: 20px;
+  padding: 2rem;
   border-radius: 10px;
 }
 
-.comment {
-  margin: 2rem 0;
+.single-comment {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(140, 146, 179, 0.25);
 }
+
+.single-comment:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.comment {
+  margin-top: 2rem;
+}
+
 .num-com {
   font-size: 18px;
   color: var(--color-dark-grey);
@@ -226,7 +237,7 @@ comments
 }
 
 .reply-comment {
-  margin-left: 2rem;
+  padding-left: 2rem;
 }
 
 /*
