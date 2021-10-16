@@ -30,6 +30,19 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: capitalize;
+  width: 134px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 10px;
+  transition: background 0.4s ease-in;
+  text-decoration: none;
 }
 
 button:focus {
@@ -63,22 +76,8 @@ header
 }
 
 .edit-feedback button {
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: capitalize;
-  width: 134px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
   background: var(--color-water-blue);
   color: var(--color-white);
-  border-radius: 10px;
-  transition: background 0.4s ease-in;
-  cursor: pointer;
-  text-decoration: none;
 }
 
 /*
@@ -176,6 +175,9 @@ comments
   border-radius: 10px;
 }
 
+.comment {
+  margin: 2rem 0;
+}
 .num-com {
   font-size: 18px;
   color: var(--color-dark-grey);
@@ -185,10 +187,95 @@ comments
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .info-person {
   display: flex;
-  flex-flow: row;
+  align-items: center;
   gap: 1rem;
+}
+
+.info-person img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.info-person h4 {
+  font-size: 13px;
+  letter-spacing: 0.18px;
+  color: var(--color-dark-grey);
+}
+
+.info-person p {
+  font-size: 13px;
+  color: var(--color-grey);
+}
+
+.reply {
+  font-size: 13px;
+  color: var(--color-water-blue);
+  font-weight: 600;
+}
+
+.text {
+  font-size: 13px;
+  color: var(--color-grey);
+}
+
+.reply-comment {
+  margin-left: 2rem;
+}
+
+/*
+add comment 
+*/
+.add-comment {
+  background: var(--color-white);
+  padding: 20px;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.add-comment h2 {
+  font-size: 18px;
+  color: var(--color-dark-grey);
+}
+
+textarea {
+  margin: 1rem 0;
+  width: 100%;
+  height: 80px;
+  border: none;
+  background: var(--color-light-grey);
+  color: #8c92b3;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+textarea::placeholder {
+  color: #8c92b3;
+}
+textarea:focus {
+  outline: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--color-grey);
+}
+
+.post-comment {
+  background: var(--color-purple);
+  color: var(--color-white);
 }
