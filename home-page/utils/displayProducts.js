@@ -1,3 +1,6 @@
+import displaySingleItem from './displaySingleItem.js';
+import toggleUpVotes from './toggleUpVotes.js';
+
 const mainFeedback = document.querySelector('.main-feedback');
 
 function displayProducts(data) {
@@ -17,37 +20,7 @@ function displayProducts(data) {
   }
 
   // if there is element
-  let dataHtml = data
-    .map((item) => {
-      // destructuring
-      let { id, title, category, upvotes, description, comments } = item;
-
-      // return the html
-      return `
-<section class="single-item-feedback">
-  <div class="single-item-text">
-    <a href="../feeedback-detail/feedback-detail.html" class="item-link" data-id="${id}">${title}</a>
-    <p>
-      ${description}
-    </p>
-    <button class="main-btn">${category}</button>
-  </div>
-
-  <button class="upvotes">
-    <img src="../data/assets/shared/icon-arrow-up.svg" alt="" />
-    <p>${upvotes}</p>
-  </button>
-
-  <div class="questions">
-    <img src="../data/assets/shared/icon-comments.svg" alt="" />
-    <p>${comments === undefined ? 0 : comments.length}</p>
-  </div>
-</section>
-
-    `;
-    })
-    .join('');
-
+  let dataHtml = displaySingleItem(data);
   // push the html
   mainFeedback.innerHTML = dataHtml;
 
@@ -64,19 +37,6 @@ function displayProducts(data) {
       localStorage.setItem('id-item', e.target.dataset.id)
     );
   });
-}
-
-// CSS and HTML toggle upvotes
-function toggleUpVotes() {
-  if (!this.classList.contains('active')) {
-    this.classList.add('active');
-    this.children[0].src = '../data/assets/shared/arrow-up-white.svg';
-    this.children[1].textContent = parseInt(this.children[1].textContent) + 1;
-  } else {
-    this.classList.remove('active');
-    this.children[0].src = '../data/assets/shared/icon-arrow-up.svg';
-    this.children[1].textContent = this.children[1].textContent - 1;
-  }
 }
 
 export default displayProducts;

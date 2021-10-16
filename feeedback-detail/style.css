@@ -26,6 +26,16 @@ body {
   padding: 24px 24px 4rem 24px;
 }
 
+.edit-feedback button,
+.post-comment {
+  width: 134px;
+  height: 40px;
+
+  gap: 6px;
+  border-radius: 10px;
+  transition: background 0.4s ease-in;
+}
+
 button {
   border: 0;
   background: transparent;
@@ -34,15 +44,10 @@ button {
   font-size: 13px;
   font-weight: 700;
   text-transform: capitalize;
-  width: 134px;
-  height: 40px;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  border-radius: 10px;
-  transition: background 0.4s ease-in;
-  text-decoration: none;
 }
 
 button:focus {
@@ -94,22 +99,17 @@ main item
 
 .item-link {
   color: var(--color-dark-grey);
-  margin-bottom: 10px;
   font-size: 13px;
   font-weight: 700;
   transition: color 0.4s linear;
   text-decoration: none;
 }
 
-.single-item-feedback:hover .item-link {
-  color: var(--color-water-blue);
-}
-
 .single-item-text p {
   font-size: 13px;
   color: var(--color-grey);
   font-weight: 400;
-  margin-bottom: 8px;
+  margin: 10px 0;
 }
 
 .upvotes {
@@ -157,7 +157,7 @@ main item
 
 .main-btn {
   background: var(--color-light-blue);
-  padding: 10px 15px;
+  padding: 8px 20px;
   border-radius: 10px;
   color: var(--color-water-blue);
   font-size: 13px;

@@ -1,126 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="stylesheet" href="style.css" />
 
-  <link rel="stylesheet" href="style.css">
+    <title>Frontend Mentor | Product feedback app</title>
+  </head>
 
-  <title>Frontend Mentor | Product feedback app</title>
-</head>
+  <body>
+    <!-- header -->
+    <header class="top">
+      <a href="../home-page/home-page.html" class="go-back">
+        <img src="../data/assets/shared/icon-arrow-left.svg" alt="logo" />
+        <h4>Go Back</h4>
+      </a>
 
-<body>
-  <!-- header -->
-  <header class="top">
-    <a href="../home-page/home-page.html" class="go-back">
-    <img src="../data/assets/shared/icon-arrow-left.svg" alt="logo">
-    <h4>Go Back</h4>
-    </a>
+      <a href="../feedback-edit/" class="edit-feedback"
+        ><button>edit feedback</button></a
+      >
+    </header>
 
-    <a href="../feedback-edit/" class="edit-feedback"><button>edit feedback</button></a>
-  </header>
+    <!-- item -->
+    <section class="single-item-feedback"></section>
 
-  <!-- item -->
-  <section class="single-item-feedback">
-  <div class="single-item-text">
-    <a href="#" class="item-link" data-id="${id}">${title}</a>
-    <p>
-      ${description}
-    </p>
-    <button class="main-btn">${category}</button>
+    <!-- comments -->
+    <section class="comments">
+      <h2 class="num-com">4 Comments</h2>
+      <!-- main-comment -->
+      <div class="all-comments"></div>
+    </section>
+
+    <!-- add comment -->
+    <section class="add-comment">
+      <h2>Add Comment</h2>
+      <form action="#" class="form">
+        <textarea
+          maxlength="250"
+          placeholder="Type your comment here"
+          class="textarea"
+        ></textarea>
+        <div class="footer">
+          <p>250 Characters left</p>
+          <button class="post-comment">post comment</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- js -->
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
+
+<!-- <div class="reply-comment comment">
+  <div class="comment-header">
+    <div class="info-person">
+      <img
+        src="../data/assets/user-images/image-anne.jpg"
+        alt="logo"
+        class=""
+      />
+      <div class="container">
+        <h4>Elijah Moss</h4>
+        <p>@jejejekeeke</p>
+      </div>
+    </div>
+    <p class="reply">Reply</p>
   </div>
-  <button class="upvotes">
-    <img src="../data/assets/shared/icon-arrow-up.svg" alt="" />
-    <p>${upvotes}</p>
-  </button>
-  <div class="questions">
-    <img src="../data/assets/shared/icon-comments.svg" alt="" />
-    <p>${comments === undefined ? 0 : comments.length}</p>
-  </div>
-  </section>
-
-  <!-- comments -->
-  <section class="comments">
-    <h2 class="num-com">4 Comments</h2>
-    <!-- main-comment -->
-    <article class="single-comment">
-      <div class="main-comment comment">
-      <div class="comment-header">
-        <div class="info-person">
-          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
-          <div class="container">
-            <h4>Elijah Moss</h4>
-            <p>@jejejekeeke</p>
-          </div>
-        </div>
-        <p class="reply">Reply</p>
-      </div>
-      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
-    </div> 
-  </article>
-
-    <!-- main-comment -->
-    <article class="single-comment">
-      <div class="main-comment comment">
-      <div class="comment-header">
-        <div class="info-person">
-          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
-          <div class="container">
-            <h4>Elijah Moss</h4>
-            <p>@jejejekeeke</p>
-          </div>
-        </div>
-        <p class="reply">Reply</p>
-      </div>
-      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
-    </div> 
-    <div class="reply-comment comment">
-      <div class="comment-header">
-        <div class="info-person">
-          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
-          <div class="container">
-            <h4>Elijah Moss</h4>
-            <p>@jejejekeeke</p>
-          </div>
-        </div>
-        <p class="reply">Reply</p>
-      </div>
-      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
-    </div> 
-    <div class="reply-comment comment">
-      <div class="comment-header">
-        <div class="info-person">
-          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
-          <div class="container">
-            <h4>Elijah Moss</h4>
-            <p>@jejejekeeke</p>
-          </div>
-        </div>
-        <p class="reply">Reply</p>
-      </div>
-      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
-    </div> 
-  </article>
-  </section>
-
- 
-  <!-- add comment -->
-  <section class="add-comment">
-    <h2>Add Comment</h2>
-    <form action="#" class="form">
-      <textarea maxlength="250" placeholder="Type your comment here" class="textarea"></textarea>
-      <div class="footer">
-        <p>250 Characters left</p>
-        <button class="post-comment">post comment</button>
-      </div>
-    </form> 
-  </section>
-
-  <!-- js -->
-  <script src="./app.js" type="module"></script>
-
-</body>
-<html
+  <p class="text">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur
+    eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa
+    obcaecati expedita optio, reprehenderit nobis similique modi inventore.
+  </p>
+</div> -->

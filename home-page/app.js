@@ -8,6 +8,7 @@ import {
 } from './utils/categoryFuntions.js';
 import displayNumbers from './utils/displayNumbers.js';
 import displayProducts from './utils/displayProducts.js';
+import fetchData from './utils/fetchData.js';
 
 // get elements
 const sidebar = document.querySelector('.sidebar');
@@ -53,17 +54,11 @@ categoryBtn.forEach((btn) => {
   btn.addEventListener('click', getCategory);
 });
 
-// fetch the data
-async function fetchData(URL) {
-  const response = await fetch(URL);
-  const data = await response.json();
-  return data.productRequests;
-}
-
 // get the data and call the displayProducts
 async function getProductRequests(URL, category, sort) {
   // get the data
   let data = await fetchData(URL);
+  data = data.productRequests;
 
   // filter data by category
   data = filterCategory(data, category);
