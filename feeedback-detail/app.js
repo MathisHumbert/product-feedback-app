@@ -43,38 +43,80 @@ function displaySingleItem(data) {
 function displayComments(data) {
   let localId = localStorage.getItem('id-item');
   data = data.filter((item) => item.id == localId)[0];
-  let comments = data.comments;
+  let allComments = data.comments;
 
-  comments.forEach((item) => {
+  if (allComments === undefined) {
+    return false;
+  }
+
+  allComments.forEach((item) => {
+    let comment = document.createElement('article');
+    comment.className = 'single-comment';
     let { content, user, replies } = item;
     let { image, name, username } = user;
-    console.log(replies);
+
+    comment.innerHTML = `
+    <div class="main-comment comment">
+  <div class="comment-header">
+    <div class="info-person">
+      <img
+        src="${image}"
+        alt="logo"
+        class=""
+      />
+      <div class="container">
+        <h4>${name}</h4>
+        <p>@${username}</p>
+      </div>
+    </div>
+    <p class="reply">Reply</p>
+  </div>
+  <p class="text">
+    ${content}
+  </p>
+</div>
+
+    `;
+
+    if (!(replies === undefined)) {
+      displayReply(replies, comment);
+    }
+
+    comments.appendChild(comment);
   });
 }
 
-{
-  /* <article class="single-comment">
-  <div class="main-comment comment">
-    <div class="comment-header">
-      <div class="info-person">
-        <img
-          src="../data/assets/user-images/image-anne.jpg"
-          alt="logo"
-          class=""
-        />
-        <div class="container">
-          <h4>Elijah Moss</h4>
-          <p>@jejejekeeke</p>
-        </div>
+function displayReply(replies, element) {
+  replies.forEach((item) => {
+    let comment = document.createElement('div');
+    comment.className = 'reply-comment comment';
+    let { content, user, replies } = item;
+    let { image, name, username } = user;
+
+    comment.innerHTML = `
+  <div class="comment-header">
+    <div class="info-person">
+      <img
+        src="${image}"
+        alt="logo"
+        class=""
+      />
+      <div class="container">
+        <h4>${name}</h4>
+        <p>@${username}</p>
       </div>
-      <p class="reply">Reply</p>
     </div>
-    <p class="text">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-      consequatur eaque illo officiis ad fuga sit magnam quidem quam facere.
-      Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi
-      inventore.
-    </p>
+    <p class="reply">Reply</p>
   </div>
-</article> */
+  <p class="text">
+    ${content}
+  </p>
+    `;
+
+    if (!(replies === undefined)) {
+      displayReply(replies, comment);
+    }
+
+    element.appendChild(comment);
+  });
 }
