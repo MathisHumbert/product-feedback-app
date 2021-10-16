@@ -7,31 +7,104 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
 
+  <link rel="stylesheet" href="style.css">
+
   <title>Frontend Mentor | Product feedback app</title>
 </head>
 
 <body>
-  Go Back
-  Edit Feedback
+  <!-- header -->
+  <header class="top">
+    <a href="../home-page/home-page.html" class="go-back">
+    <img src="../data/assets/shared/icon-arrow-left.svg" alt="logo">
+    <h4>Go Back</h4>
+    </a>
 
-  <!-- Add upvotes --> 
-  <!-- Add title -->
-  <!-- Add description -->
-  <!-- Add category -->
-  <!-- Add comments -->
+    <a href="../feedback-edit/" class="edit-feedback"><button>edit feedback</button></a>
+  </header>
 
-  <!-- Add number of comments + subcomments --> Comments
+  <!-- item -->
+  <section class="single-item-feedback">
+  <div class="single-item-text">
+    <a href="#" class="item-link" data-id="${id}">${title}</a>
+    <p>
+      ${description}
+    </p>
+    <button class="main-btn">${category}</button>
+  </div>
+  <button class="upvotes">
+    <img src="../data/assets/shared/icon-arrow-up.svg" alt="" />
+    <p>${upvotes}</p>
+  </button>
+  <div class="questions">
+    <img src="../data/assets/shared/icon-comments.svg" alt="" />
+    <p>${comments === undefined ? 0 : comments.length}</p>
+  </div>
+  </section>
 
-  <!-- Add name -->
-  <!-- Add username -->
-  <!-- Add comment -->
-  Reply
+  <!-- comments -->
+  <section class="comments">
+    <h2 class="num-com">4 Comments</h2>
+    <!-- main-comment -->
+    <article class="single-comment">
+      <div class="main-comment comment">
+      <div class="comment-header">
+        <div class="info-person">
+          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
+          <div class="container">
+            <h4>Elijah Moss</h4>
+            <p>@jejejekeeke</p>
+          </div>
+        </div>
+        <p class="reply">Reply</p>
+      </div>
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
+    </div> 
+  </article>
 
-  Add Comment
-  Type your comment here
-  250 Characters left
-
-  Post Comment
+    <!-- main-comment -->
+    <article class="single-comment">
+      <div class="main-comment comment">
+      <div class="comment-header">
+        <div class="info-person">
+          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
+          <div class="container">
+            <h4>Elijah Moss</h4>
+            <p>@jejejekeeke</p>
+          </div>
+        </div>
+        <p class="reply">Reply</p>
+      </div>
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
+    </div> 
+    <div class="reply-comment comment">
+      <div class="comment-header">
+        <div class="info-person">
+          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
+          <div class="container">
+            <h4>Elijah Moss</h4>
+            <p>@jejejekeeke</p>
+          </div>
+        </div>
+        <p class="reply">Reply</p>
+      </div>
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
+    </div> 
+    <div class="reply-comment comment">
+      <div class="comment-header">
+        <div class="info-person">
+          <img src="../data/assets/user-images/image-anne.jpg" alt="logo" class="">
+          <div class="container">
+            <h4>Elijah Moss</h4>
+            <p>@jejejekeeke</p>
+          </div>
+        </div>
+        <p class="reply">Reply</p>
+      </div>
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque consequatur eaque illo officiis ad fuga sit magnam quidem quam facere. Rerum ipsa obcaecati expedita optio, reprehenderit nobis similique modi inventore.</p>
+    </div> 
+  </article>
+  </section>
   
 </body>
 <html

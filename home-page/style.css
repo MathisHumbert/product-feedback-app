@@ -316,7 +316,6 @@ main feedback
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 2px 6px #979797;
-  transition: box-shadow 0.4s linear;
 }
 
 .item-link {

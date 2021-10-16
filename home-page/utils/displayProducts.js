@@ -26,7 +26,7 @@ function displayProducts(data) {
       return `
 <section class="single-item-feedback">
   <div class="single-item-text">
-    <a href="../feedback-edit/feedback-edit.html" class="item-link" data-id="${id}">${title}</a>
+    <a href="../feeedback-detail/feedback-detail.html" class="item-link" data-id="${id}">${title}</a>
     <p>
       ${description}
     </p>
