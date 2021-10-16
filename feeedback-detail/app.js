@@ -3,12 +3,16 @@ import toggleUpVotes from '../home-page/utils/toggleUpVotes.js';
 
 const singleItem = document.querySelector('.single-item-feedback');
 const commentsContainer = document.querySelector('.comments-container');
+const numCom = document.querySelector('.num-com');
+const formComment = document.querySelector('.form-comment');
+const textaeraComment = document.querySelector('.textarea-comment');
+const numChar = document.querySelector('.char-num');
 
 async function getData(URL) {
   let data = await fetchData(URL);
 
   displaySingleItem(data.productRequests);
-  displayComments(data.productRequests);
+  displayComments(data);
 }
 window.addEventListener('DOMContentLoaded', () => {
   getData('../data/data.json');
@@ -42,12 +46,19 @@ function displaySingleItem(data) {
 
 function displayComments(data) {
   let localId = localStorage.getItem('id-item');
+  let profileData = data.currentUser;
+  data = data.productRequests;
   data = data.filter((item) => item.id == localId)[0];
   let allComments = data.comments;
 
   if (allComments === undefined) {
+    numCom.innerHTML = `There is no comments yet`;
     return false;
   }
+
+  numCom.innerHTML = `${data.comments.length} ${
+    data.comments.length > 1 ? 'Comments' : 'Comment'
+  }`;
 
   allComments.forEach((item) => {
     let comment = document.createElement('article');
@@ -74,19 +85,30 @@ function displayComments(data) {
   <p class="text">
     ${content}
   </p>
+<form action="#" class="form-reply">
+  <textarea
+    maxlength="250"
+    placeholder="Type your comment here"
+    class="textarea-reply"
+  ></textarea>
+  <button class="post-reply">post reply</button>
+</form>
 </div>
-
     `;
 
     if (!(replies === undefined)) {
-      displayReply(replies, comment);
+      displayReply(replies, comment, username);
     }
 
     commentsContainer.appendChild(comment);
   });
+
+  const replyBtn = document.querySelectorAll('.reply');
+
+  replyBtn.forEach((btn) => btn.addEventListener('click', showReply));
 }
 
-function displayReply(replies, element) {
+function displayReply(replies, element, previousName) {
   replies.forEach((item) => {
     let comment = document.createElement('div');
     comment.className = 'reply-comment comment';
@@ -109,8 +131,17 @@ function displayReply(replies, element) {
     <p class="reply">Reply</p>
   </div>
   <p class="text">
-    ${content}
+    <span class= "previous-comment">@${previousName} </span>${content}
   </p>
+
+<form action="#" class="form-reply">
+  <textarea
+    maxlength="250"
+    placeholder="Type your comment here"
+    class="textarea-reply"
+  ></textarea>
+  <button class="post-reply">post reply</button>
+</form>
     `;
 
     if (!(replies === undefined)) {
@@ -119,4 +150,25 @@ function displayReply(replies, element) {
 
     element.appendChild(comment);
   });
+}
+
+function showReply() {
+  this.parentElement.parentElement.children[2].classList.toggle('show');
+}
+
+formComment.addEventListener('submit', addNewComment);
+textaeraComment.addEventListener('keyup', charactersLeft);
+
+function addNewComment(e) {
+  e.preventDefault();
+  const commentValue = textaeraComment.value;
+  this.reset();
+
+  // set a new comment
+}
+
+function charactersLeft() {
+  console.log(numChar);
+  const value = textaeraComment.value.length;
+  numChar.innerHTML = `${250 - value} Characters left`;
 }
